@@ -138,6 +138,57 @@ function init_waves () {
         var t2 = (t + 0.25) - floor(t + 0.25);
         return 1 - 4 * abs(0.5 - t2) 
     });
+    
+    img_srcs.push("trap.png");
+   
+    real_gets.push(function (t) {
+        var r = [0];
+        
+        for (var i = 0; i < t; i ++) {
+            r.push(0);
+            r.push(0);
+        }
+        
+        return new Float32Array(r);
+    });
+    
+    imag_gets.push(function (t) {
+        var r = [0];
+        
+        for (var i = 0; i < t; i ++) {
+            var sign = -1;
+            if (i % 4 < 2)
+                sign = 1;
+            r.push(sign * sqrt(2) * 8 / (PI * PI * ((i * 2) + 1) * ((i * 2) + 1))) ;
+            r.push(0);
+        }
+        
+        return new Float32Array(r);
+    });
+    
+    get_real_value.push(function (t) {
+        var t2 = (t / 2) - floor(t / 2);
+        var t3 = t - floor(t);
+        var t4 = 2 * t - floor(t * 2);
+        var t5 = 4 * t - floor(t * 4);
+        
+        var r = 1;
+        
+        if (t5 < 0.5) {
+            r = t5 * 2;
+        }
+        
+        if (t4 >= 0.5) {
+            r -= t5 * 2;
+            r += 1;
+        }
+        
+        if (t3 > 0.5) {
+            r *= -1;
+        }
+        
+        return r;
+    });
 
 }
 
@@ -175,7 +226,7 @@ function init_webaudio () {
 function prev_wave () {
     cur_wave --;
     if (cur_wave < 0)
-        cur_wave = 0;
+        cur_wave = img_srcs.length - 1;
     
     update_waveicon();
     update_tone();
@@ -186,7 +237,7 @@ function next_wave () {
     cur_wave ++;
     
     if (cur_wave >= img_srcs.length)
-        cur_wave = img_srcs.length - 1;
+        cur_wave = 0;
     
     update_waveicon();
     update_tone();
