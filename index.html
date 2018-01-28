@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+        <script src="sketch.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="riemann.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="title">
+                Additive synthesis
+            </div>
+            <div class="subtitle">
+                An interactive sound activity
+            </div>
+            <div class="date">
+                01 27 2018 
+            </div>
+            <div class="author">
+                pseudophpt [p5.js, web audio]
+            </div>
+        </div>
+        <div class="control">
+            <table><tr>
+                <td>
+                    <img class="clickable" onclick="del_term();" width="32" height="32" src="arrow-left.svg">
+                </td>
+                <td>
+                    <p id="terms">1</p>
+                </td>
+                <td>
+                    <img class="clickable" onclick="add_term();" width="32" height="32" src="arrow-right.svg">
+                </td>
+                <td>
+                    <img class="clickable" onclick="prev_wave();" width="32" height="32" src="arrow-left.svg">
+                </td>
+                <td>
+                    <img id="wave" src="square.png"></p>
+                </td>
+                <td>
+                    <img class="clickable" onclick="next_wave();" width="32" height="32" src="arrow-right.svg">
+                </td>
+            </tr></table>
+        </div>
+    </body></html>
