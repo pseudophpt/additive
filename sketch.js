@@ -24,6 +24,7 @@ var gterms;
 var get_real_value;
 
 var osc;
+var gain;
 
 var real;
 var imag;
@@ -211,7 +212,11 @@ function init_webaudio () {
     
     osc = audioCtx.createOscillator();
     
-    osc.connect(audioCtx.destination);
+    gain = audioCtx.createGain();
+    gain.gain.value = 0.05;
+    
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
     
     real = new Float32Array([0, 0]);
     imag = new Float32Array([0, 1]);
