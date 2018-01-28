@@ -298,10 +298,10 @@ function draw () {
     stroke(c2);
     
     line(0, half_height, screen_width, half_height); /* X */
-    line(half_width, 0, half_width, half_height); /* Y */
+    line(half_width, scaley * 2, half_width, screen_height - (scaley * 2)); /* Y */
 
     stroke(c4);
-    line(0, screen_height - scaley, screen_width, screen_height - scaley);
+    line(0, scaley, screen_width, scaley);
     
     /* Function */
     
@@ -325,7 +325,7 @@ function draw () {
         
         stroke(c1);
         var y = visible_gterms[i] * scaley / 2;
-        j2 = screen_height - scaley - (y);
-        line(i, screen_height - scaley, i, j2);
+        j2 = scaley - (y);
+        line(i, scaley, i, j2);
     }
 }
